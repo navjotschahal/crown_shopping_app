@@ -9,7 +9,7 @@ import {
     signInWithRedirect,
     signInWithPopup,
     GoogleAuthProvider,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword, getRedirectResult, signInWithEmailAndPassword
 } from 'firebase/auth';
 
 import {
@@ -79,4 +79,25 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
         return;
     }
     return await createUserWithEmailAndPassword(auth, email, password);
+}
+
+/**
+ * a wrapper around firebase @see getRedirectResult from firebase/auth
+ * @param auth_ : Auth from firebase/auth
+ * @returns 
+ */
+export const getRedirectResult_ = async (auth_) => {
+    return await getRedirectResult(auth_);
+}
+
+/**
+ * 
+ * @param auth_ : Auth from firebase/auth
+ * @returns 
+ */
+export const signInAuthUserWithEmailAndPassword = async (auth_, email, password) => {
+    if (!email || !password) {
+        return;
+    }
+    return await signInWithEmailAndPassword(auth_, email, password);
 }
