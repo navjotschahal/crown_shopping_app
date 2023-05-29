@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   auth,
-  createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
@@ -67,13 +66,13 @@ const SignInComponent = () => {
   const signInUsingGooglePopup = async () => {
     const response = await signInWithGooglePopup();
     console.log(response);
-    const userDocRef = await createUserDocumentFromAuth(response.user);
+    await createUserDocumentFromAuth(response.user);
   };
 
   const signInUsingGoogleRedirect = async () => {
     const response = await getRedirectResult_(auth);
     if (response != null) {
-      const userDocRef = await createUserDocumentFromAuth(response.user);
+      await createUserDocumentFromAuth(response.user);
     }
     console.log(response);
   };
